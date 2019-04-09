@@ -1,0 +1,17 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{F828FB09-4609-41F9-A1C0-96955451B620}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "CoverDemo",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"AIModule",
+				"Engine"
+			]
+		}
+	]
+}
