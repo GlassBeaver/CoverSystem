@@ -7,8 +7,8 @@ Key features:
 =================================
 
 Data generation:
-  a) navmesh edge-walking
-  b) 3D object scanning
+- navmesh edge-walking
+- 3D object scanning
     
 Data persistence via octree
 
