@@ -45,7 +45,7 @@ protected:
 	const bool FindGroundPoint(FVector& OutGroundPoint, const FVector Location) const;
 
 	// Gathers all the free grid points around an blocked grid point and adds them to OutGridPoints. Checks in 8 directions.
-	void GatherFreeGridPoints(TArray<FVector>& OutGridPoints, const FVector BlockedGridPoint, TArray<FVector>& FreeGridPoints, const float NavPointEqualityTolerance);
+	void GatherFreeGridPoints(TArray<FVector>& OutGridPoints, const FVector BlockedGridPoint, const TArray<FVector>& FreeGridPoints, const float NavPointEqualityTolerance);
 
 	// Generates cover points inside the specified bounding box. This method does the work.
 	void GenerateCoverInBounds(TArray<FDTOCoverData>& OutCoverPointsOfActors, FBox& Bounds);

@@ -36,16 +36,16 @@ const bool FActorCoverPointGeneratorTask::FindGroundPoint(FVector& OutGroundPoin
 	return result && !hit.bStartPenetrating;
 }
 
-void FActorCoverPointGeneratorTask::GatherFreeGridPoints(TArray<FVector>& OutGridPoints, const FVector BlockedGridPoint, TArray<FVector>& FreeGridPoints, const float NavPointEqualityTolerance)
+void FActorCoverPointGeneratorTask::GatherFreeGridPoints(TArray<FVector>& OutGridPoints, const FVector BlockedGridPoint, const TArray<FVector>& FreeGridPoints, const float NavPointEqualityTolerance)
 {
-	for (const FVector gridPoint : FreeGridPoints)
+	for (const FVector& gridPoint : FreeGridPoints)
 	{
 		if (FMath::IsNearlyEqual(gridPoint.X, BlockedGridPoint.X, NavPointEqualityTolerance)
 			&& FMath::IsNearlyEqual(gridPoint.Y, BlockedGridPoint.Y, NavPointEqualityTolerance)
 			&& FMath::IsNearlyEqual(gridPoint.Z, BlockedGridPoint.Z, NavPointEqualityTolerance))
 		{
 			bool bUnique = true;
-			for (const FVector coverPoint : OutGridPoints)
+			for (const FVector& coverPoint : OutGridPoints)
 				if (FMath::IsNearlyEqual(gridPoint.X, coverPoint.X, NavPointEqualityTolerance)
 					&& FMath::IsNearlyEqual(gridPoint.Y, coverPoint.Y, NavPointEqualityTolerance)
 					&& FMath::IsNearlyEqual(gridPoint.Z, coverPoint.Z, NavPointEqualityTolerance))

@@ -59,7 +59,7 @@ private:
 	bool bDebugDraw = false;
 #endif
 
-	const FVector GetEdgeDir(FVector& EdgeStartVertex, FVector& EdgeEndVertex) const;
+	const FVector GetEdgeDir(const FVector& EdgeStartVertex, const FVector& EdgeEndVertex) const;
 
 	// Uses navmesh raycasts to scan for cover from TraceStart to TraceEnd.
 	// Builds an FDTOCoverData for transferring the results over to the cover octree.

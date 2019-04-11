@@ -68,6 +68,7 @@ bool FNavmeshCoverPointGeneratorTask::ScanForCoverNavMeshProjection(FDTOCoverDat
 		if (bSuccess)
 			// now that we've established that it's a cliff's edge, we need to trace into the ground to find the "cliff object"
 			bSuccess = World->LineTraceSingleByChannel(hit, TraceStart, TraceStart - FVector(0.0f, 0.0f, NavMeshMaxZDistanceFromGround), ECollisionChannel::ECC_GameTraceChannel1, collQueryParams);
+
 	}
 
 	if (!bSuccess)
@@ -96,7 +97,7 @@ void FNavmeshCoverPointGeneratorTask::ProcessEdgeStep(TArray<FDTOCoverData>& Out
 		}
 }
 
-const FVector FNavmeshCoverPointGeneratorTask::GetEdgeDir(FVector& EdgeStartVertex, FVector& EdgeEndVertex) const
+const FVector FNavmeshCoverPointGeneratorTask::GetEdgeDir(const FVector& EdgeStartVertex, const FVector& EdgeEndVertex) const
 {
 	return (EdgeEndVertex - EdgeStartVertex).GetUnsafeNormal();
 }
@@ -118,7 +119,7 @@ const FBox FNavmeshCoverPointGeneratorTask::GenerateCoverInBounds(TArray<FDTOCov
 	navdata->FinishBatchQuery();
 
 	// process the navmesh vertices (called nav mesh edges for some occult reason)
-	TArray<FVector> vertices = navGeo.NavMeshEdges;
+	TArray<FVector>& vertices = navGeo.NavMeshEdges;
 	const int nVertices = vertices.Num();
 	if (nVertices > 1)
 	{
@@ -141,17 +142,17 @@ const FBox FNavmeshCoverPointGeneratorTask::GenerateCoverInBounds(TArray<FDTOCov
 			for (int iEdgeStep = 0; iEdgeStep < nEdgeSteps; iEdgeStep++)
 				// check to the left and to optionally, to the right of the vertex's location for any blocking geometry
 				// if geometry blocks the raycast then the vertex is marked as a cover point
-				ProcessEdgeStep(OutCoverPointsOfActors, edgeStartVertex + (iEdgeStep * CoverPointMinDistance * edgeDir) + FVector(0.0f, 0.0f, CoverPointGroundOffset), edgeDir);
+				ProcessEdgeStep(OutCoverPointsOfActors, edgeStartVertex + (iEdgeStep * CoverPointMinDistance * edgeDir) + FVector(0.0f, 0.0f, CoverPointGroundOffset), edgeDir, true);
 
 			// process the first step if the edge was shorter than CoverPointMinDistance
 			if (nEdgeSteps == 0)
-				ProcessEdgeStep(OutCoverPointsOfActors, edgeStartVertex + FVector(0.0f, 0.0f, CoverPointGroundOffset), edgeDir);
+				ProcessEdgeStep(OutCoverPointsOfActors, edgeStartVertex + FVector(0.0f, 0.0f, CoverPointGroundOffset), edgeDir, false);
 
 			// process the end vertex; 99% of the time it's left out by the above for-loop, and in that 1% of cases we will just process the same vertex twice (likely to never happen because of floating-point division)
-			ProcessEdgeStep(OutCoverPointsOfActors, edgeEndVertex + FVector(0.0f, 0.0f, CoverPointGroundOffset), edgeDir);
+			ProcessEdgeStep(OutCoverPointsOfActors, edgeEndVertex + FVector(0.0f, 0.0f, CoverPointGroundOffset), edgeDir, false);
 
 			// process the end vertex again, this time with its edge direction rotated by 45 degrees
-			ProcessEdgeStep(OutCoverPointsOfActors, edgeEndVertex + FVector(0.0f, 0.0f, CoverPointGroundOffset), FVector(FVector2D(edgeDir).GetRotated(45.0f), edgeDir.Z));
+			ProcessEdgeStep(OutCoverPointsOfActors, edgeEndVertex + FVector(0.0f, 0.0f, CoverPointGroundOffset), FVector(FVector2D(edgeDir).GetRotated(45.0f), edgeDir.Z), false);
 		}
 	}
 
