@@ -174,6 +174,8 @@ const bool UCoverFinderService::EvaluateCoverPoint(
 
 void UCoverFinderService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
+	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
+
 	// profiling
 	SCOPE_CYCLE_COUNTER(STAT_FindCover);
 	INC_DWORD_STAT(STAT_FindCoverHistoricalCount);

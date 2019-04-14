@@ -8,6 +8,8 @@
 
 void UCoverFinderVisualizerService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
+	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
+
 #if DEBUG_RENDERING
 	UBlackboardComponent* blackBoardComp = OwnerComp.GetBlackboardComponent();
 	const bool bGenericDebug = blackBoardComp->GetValueAsBool(Key_GenericDebug);
