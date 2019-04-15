@@ -19,3 +19,4 @@ PACKAGED
 *.suo
 *.xcodeproj
 *.xcworkspace
+enc_temp_folder/

@@ -77,7 +77,7 @@ void ACoverDemoGameModeBase::DebugShowCoverPoints()
 	UCoverSystem::GetInstance(world)->FindCoverPoints(coverPoints, FBoxCenterAndExtent(FVector::ZeroVector, FVector(64000.0f)).GetBox());
 
 	for (FCoverPointOctreeElement cp : coverPoints)
-		DrawDebugSphere(world, cp.Data->Location, 8.0f, 4, cp.Data->bTaken ? FColor::Red : cp.Data->bForceField ? FColor::Orange : FColor::Purple, true);
+		DrawDebugSphere(world, cp.Data->Location, 25, 4, cp.Data->bTaken ? FColor::Red : cp.Data->bForceField ? FColor::Orange : FColor::Blue, true, -1, 0, 5);
 #endif
 }
 
