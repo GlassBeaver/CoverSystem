@@ -3,6 +3,10 @@ Real-Time Dynamic Cover System for Unreal Engine 4
 
 See my article: https://horugame.com/real-time-dynamic-cover-system-for-unreal-engine-4/
 
+```diff
+- You'll need to CLONE the project! Zip downloads don't work as I'm using git-lfs for storing binary files.
+```
+
 Key features:
 =================================
 
