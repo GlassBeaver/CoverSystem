@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class COVERDEMO_API UCoverNavigationSystem : public UNavigationSystem
+class COVERDEMO_API UCoverNavigationSystem : public UNavigationSystemBase
 {
 	GENERATED_BODY()
 
