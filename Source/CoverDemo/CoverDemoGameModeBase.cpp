@@ -24,10 +24,11 @@ void ACoverDemoGameModeBase::PostActorCreated()
 {
 	Super::PostActorCreated();
 
+	// DEPRECATED: doesn't seem to work or matter anymore in 4.24
 	// register our custom navmesh subclass - this is the only thing to do to get it picked up by UNavigationSystem::RegisterNavigationDataInstances()
 	// that and creating a custom nav agent under project settings -> navigation system -> agents -> supported agents, whose navigation data class and preferred nav data should be set to our class.
-	AChangeNotifyingRecastNavMesh* navmesh = GetWorld()->SpawnActor<AChangeNotifyingRecastNavMesh>(AChangeNotifyingRecastNavMesh::StaticClass());
-	check(IsValid(navmesh));
+	//AChangeNotifyingRecastNavMesh* navmesh = GetWorld()->SpawnActor<AChangeNotifyingRecastNavMesh>(AChangeNotifyingRecastNavMesh::StaticClass());
+	//check(IsValid(navmesh));
 }
 
 void ACoverDemoGameModeBase::OnWorldInitDelegate(UWorld* World, const UWorld::InitializationValues IVS)
