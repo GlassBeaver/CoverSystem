@@ -25,4 +25,4 @@ Real-time dynamic updates via Recast events
 
 Profiler integration
 
-Runs on UE 4.22
+Runs on UE 4.22 - 4.25
