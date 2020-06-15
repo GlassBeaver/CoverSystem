@@ -27,4 +27,4 @@ Profiler integration
 
 Runs on UE 4.22 - 4.25
 
-https://discord.gg/HXv2xUF
+https://discord.gg/HXv2xUF please use the #offtopic channel
