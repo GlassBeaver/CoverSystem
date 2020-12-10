@@ -27,4 +27,4 @@ Profiler integration
 
 Runs on UE 4.22 - 4.26
 
-https://discord.gg/CWmWvnCFd7 please use the #offtopic channel
+https://discord.gg/JmpNjUV5tx please use the #coversystem channel
