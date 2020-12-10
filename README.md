@@ -25,6 +25,6 @@ Real-time dynamic updates via Recast events
 
 Profiler integration
 
-Runs on UE 4.22 - 4.25
+Runs on UE 4.22 - 4.26
 
 https://discord.gg/HXv2xUF please use the #offtopic channel
