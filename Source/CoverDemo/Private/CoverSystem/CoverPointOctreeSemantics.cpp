@@ -3,7 +3,11 @@
 #include "CoverSystem/CoverPointOctreeSemantics.h"
 #include "CoverSystem/CoverSystem.h"
 
+#if ENGINE_MINOR_VERSION < 26
 void FCoverPointOctreeSemantics::SetElementId(const FCoverPointOctreeElement& Element, FOctreeElementId ID)
+#else
+void FCoverPointOctreeSemantics::SetElementId(const FCoverPointOctreeElement& Element, FOctreeElementId2 ID)
+#endif
 {
 	UWorld* world = nullptr;
 	UObject* ElementOwner = Element.GetOwner();

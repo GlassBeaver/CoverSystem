@@ -1,6 +1,6 @@
 // Copyright (c) 2018 David Nadaski. All Rights Reserved.
 
-#include "CoverFinderVisualizerService.h"
+#include "Debug/CoverFinderVisualizerService.h"
 
 #if DEBUG_RENDERING
 #include "DrawDebugHelpers.h"

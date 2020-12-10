@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericOctreePublic.h"
-#include "GenericOctree.h"
+#include "Math/GenericOctreePublic.h"
+#include "Math/GenericOctree.h"
 #include "GameFramework/Actor.h"
 #include "CoverPointOctreeData.h"
 #include "DTOCoverData.h"

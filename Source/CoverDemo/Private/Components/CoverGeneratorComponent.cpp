@@ -1,6 +1,6 @@
 // Copyright (c) 2018 David Nadaski. All Rights Reserved.
 
-#include "CoverGeneratorComponent.h"
+#include "Components/CoverGeneratorComponent.h"
 #include "Tasks/ActorCoverPointGeneratorTask.h"
 
 // Sets default values for this component's properties

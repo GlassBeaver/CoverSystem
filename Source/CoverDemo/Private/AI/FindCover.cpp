@@ -1,6 +1,6 @@
 // Copyright (c) 2018 David Nadaski. All Rights Reserved.
 
-#include "FindCover.h"
+#include "AI/FindCover.h"
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
 #include "NavigationSystem.h"

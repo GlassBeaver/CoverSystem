@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AsyncWork.h"
+#include "Async/AsyncWork.h"
 #include "GameFramework/Actor.h"
 #include "Engine/World.h"
 #include "Components/StaticMeshComponent.h"

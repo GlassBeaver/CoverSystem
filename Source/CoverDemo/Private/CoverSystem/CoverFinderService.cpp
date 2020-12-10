@@ -1,6 +1,6 @@
 // Copyright (c) 2018 David Nadaski. All Rights Reserved.
 
-#include "CoverFinderService.h"
+#include "CoverSystem/CoverFinderService.h"
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
 
