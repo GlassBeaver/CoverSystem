@@ -26,5 +26,3 @@ Real-time dynamic updates via Recast events
 Profiler integration
 
 Runs on UE 4.22 - 4.26
-
-https://discord.gg/JmpNjUV5tx please use the #coversystem channel
