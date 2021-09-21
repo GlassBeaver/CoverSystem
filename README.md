@@ -1,6 +1,9 @@
 # CoverSystem
 Real-Time Dynamic Cover System for Unreal Engine 4
 
+Used in "Severed Steel" a game by Matt Larrabee!
+https://store.steampowered.com/app/1227690/Severed_Steel/
+
 See my article: https://horugame.com/real-time-dynamic-cover-system-for-unreal-engine-4/
 <br/>Or my presentation, click on the PowerPoint logo: https://horugame.com/cover-system-talk-and-slides/
 
