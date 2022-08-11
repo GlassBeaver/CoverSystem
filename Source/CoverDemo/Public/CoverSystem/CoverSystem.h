@@ -68,11 +68,7 @@ private:
 
 	// Maps cover point locations to their ids
 	// NOT THREAD-SAFE! Use the corresponding thread-safe functions instead.
-#if ENGINE_MINOR_VERSION < 26
-	TMap<const FVector, FOctreeElementId> ElementToID;
-#else
 	TMap<const FVector, FOctreeElementId2> ElementToID;
-#endif
 
 	// Maps cover objects to their cover point locations
 	TMultiMap<TWeakObjectPtr<const AActor>, FVector> CoverObjectToID;
@@ -86,11 +82,8 @@ private:
 
 	// Finds the element id of the supplied vector. Thread-safe.
 	// Returns false if the id wasn't found or is no longer valid.
-#if ENGINE_MINOR_VERSION < 26
-	bool GetElementID(FOctreeElementId& OutElementID, const FVector ElementLocation) const;
-#else
+
 	bool GetElementID(FOctreeElementId2& OutElementID, const FVector ElementLocation) const;
-#endif
 
 	// Thread-safe Remove() from ElementToID.
 	// Returns true if any elements were removed, false if none.
@@ -153,11 +146,7 @@ public:
 	// Wrapper for Add() on ElementToID.
 	// Not thread-safe and shouldn't be called explicitly. Public because of FCoverPointOctreeSemantics::SetElementId().
 	// Automatically wrapped in a thread-safe context as it is a side-effect of AddCoverPoint(), which is always thread-safe.
-#if ENGINE_MINOR_VERSION < 26
-	void AssignIDToElement(const FVector ElementLocation, FOctreeElementId ID);
-#else
 	void AssignIDToElement(const FVector ElementLocation, FOctreeElementId2 ID);
-#endif
 
 	// Mark the cover at the supplied location as taken.
 	// Returns true if the cover wasn't already taken, false if it was or an error has occurred, e.g. the cover no longer exists.

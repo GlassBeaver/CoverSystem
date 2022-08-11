@@ -81,7 +81,6 @@ void UCoverSystem::OnBeginPlay()
 		Navmesh = const_cast<AChangeNotifyingRecastNavMesh*>(Cast<AChangeNotifyingRecastNavMesh>(mainNavData));
 		Navmesh->NavmeshTilesUpdatedBufferedDelegate.AddDynamic(this, &UCoverSystem::OnNavMeshTilesUpdated);
 	}
-
 }
 
 bool ContainsCoverPoint(FCoverPointOctreeElement CoverPoint, TArray<FCoverPointOctreeElement> CoverPoints)
@@ -93,20 +92,13 @@ bool ContainsCoverPoint(FCoverPointOctreeElement CoverPoint, TArray<FCoverPointO
 	return false;
 }
 
-#if ENGINE_MINOR_VERSION < 26
-bool UCoverSystem::GetElementID(FOctreeElementId& OutElementID, const FVector ElementLocation) const
-#else
+
 bool UCoverSystem::GetElementID(FOctreeElementId2& OutElementID, const FVector ElementLocation) const
-#endif
 {
 	if (bShutdown)
 		return false;
 
-#if ENGINE_MINOR_VERSION < 26
-	const FOctreeElementId* element = ElementToID.Find(ElementLocation);
-#else
 	const FOctreeElementId2* element = ElementToID.Find(ElementLocation);
-#endif
 	if (!element || !element->IsValidId())
 		return false;
 
@@ -114,11 +106,7 @@ bool UCoverSystem::GetElementID(FOctreeElementId2& OutElementID, const FVector E
 	return true;
 }
 
-#if ENGINE_MINOR_VERSION < 26
-void UCoverSystem::AssignIDToElement(const FVector ElementLocation, FOctreeElementId ID)
-#else
 void UCoverSystem::AssignIDToElement(const FVector ElementLocation, FOctreeElementId2 ID)
-#endif
 {
 	if (bShutdown)
 		return;
@@ -156,7 +144,7 @@ void UCoverSystem::OnNavMeshTilesUpdated(const TSet<uint32>& UpdatedTiles)
 				MapBounds,
 				tileIdx,
 				GetWorld()
-				))->StartSynchronousTask();
+			))->StartSynchronousTask();
 		else
 #endif
 			(new FAutoDeleteAsyncTask<FNavmeshCoverPointGeneratorTask>(
@@ -166,7 +154,7 @@ void UCoverSystem::OnNavMeshTilesUpdated(const TSet<uint32>& UpdatedTiles)
 				MapBounds,
 				tileIdx,
 				GetWorld()
-				))->StartBackgroundTask();
+			))->StartBackgroundTask();
 	}
 }
 
@@ -233,11 +221,7 @@ void UCoverSystem::RemoveStaleCoverPoints(FBox Area)
 			&& UNavigationSystemV1::GetCurrent(GetWorld())->ProjectPointToNavigation(coverPoint.Data->Location, navLocation, FVector(0.1f, 0.1f, CoverPointGroundOffset)))
 			continue;
 
-#if ENGINE_MINOR_VERSION < 26
-		FOctreeElementId id;
-#else
 		FOctreeElementId2 id;
-#endif
 		GetElementID(id, coverPoint.Data->Location);
 
 		// remove the cover point from the octree
@@ -273,11 +257,7 @@ void UCoverSystem::RemoveCoverPointsOfObject(const AActor* CoverObject)
 
 	for (const FVector coverPointLocation : coverPointLocations)
 	{
-#if ENGINE_MINOR_VERSION < 26
-		FOctreeElementId elementID;
-#else
 		FOctreeElementId2 elementID;
-#endif
 		GetElementID(elementID, coverPointLocation);
 		CoverOctree->RemoveElement(elementID);
 		RemoveIDToElementMapping(coverPointLocation);
@@ -321,11 +301,8 @@ bool UCoverSystem::HoldCover(FVector ElementLocation)
 
 	FRWScopeLock CoverDataLock(CoverDataLockObject, FRWScopeLockType::SLT_Write);
 
-#if ENGINE_MINOR_VERSION < 26
-	FOctreeElementId elemID;
-#else
+
 	FOctreeElementId2 elemID;
-#endif
 	if (!GetElementID(elemID, ElementLocation))
 		return false;
 
@@ -339,11 +316,7 @@ bool UCoverSystem::ReleaseCover(FVector ElementLocation)
 
 	FRWScopeLock CoverDataLock(CoverDataLockObject, FRWScopeLockType::SLT_Write);
 
-#if ENGINE_MINOR_VERSION < 26
-	FOctreeElementId elemID;
-#else
 	FOctreeElementId2 elemID;
-#endif
 	if (!GetElementID(elemID, ElementLocation))
 		return false;
 
