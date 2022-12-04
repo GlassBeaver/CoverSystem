@@ -75,10 +75,10 @@ bool FNavmeshCoverPointGeneratorTask::ScanForCoverNavMeshProjection(FDTOCoverDat
 		return false;
 
 	// force fields (shields) are handled by FActorCoverPointGeneratorTask instead
-	if (ECC_GameTraceChannel2 == hit.Actor->GetRootComponent()->GetCollisionObjectType())
+	if (ECC_GameTraceChannel2 == hit.GetActor()->GetRootComponent()->GetCollisionObjectType())
 		return false;
 
-	OutCoverData = FDTOCoverData(hit.Actor.Get(), TraceStart, false);
+	OutCoverData = FDTOCoverData(hit.GetActor(), TraceStart, false);
 	return true;
 }
 

@@ -25,9 +25,6 @@ struct FCoverPointOctreeSemantics
 		return A.Bounds == B.Bounds;
 	}
 
-#if ENGINE_MINOR_VERSION < 26
-	static void SetElementId(const FCoverPointOctreeElement& Element, FOctreeElementId ID);
-#else
+
 	static void SetElementId(const FCoverPointOctreeElement& Element, FOctreeElementId2 ID);
-#endif
 };

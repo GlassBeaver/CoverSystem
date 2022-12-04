@@ -179,18 +179,12 @@ void FActorCoverPointGeneratorTask::DoWork()
 
 	if (bGeneratePerStaticMesh) // collect the bounding boxes of all the static meshes of Owner
 	{
-#if ENGINE_MINOR_VERSION < 25
-		TArray<UActorComponent*> staticMeshes = (Owner->GetComponentsByClass(UStaticMeshComponent::StaticClass()));
-		for (UActorComponent* staticMesh : staticMeshes)
-		{
-			FBox bounds = Cast<UStaticMeshComponent>(staticMesh)->Bounds.GetBox();
-#else
+
 		TArray<UStaticMeshComponent*> staticMeshes;
 		Owner->GetComponents<UStaticMeshComponent>(staticMeshes);
 		for (UStaticMeshComponent* staticMesh : staticMeshes)
 		{
 			FBox bounds = staticMesh->Bounds.GetBox();
-#endif
 			if (ScanGridUnit > bounds.Max.X - bounds.Min.X
 				|| ScanGridUnit > bounds.Max.Y - bounds.Min.Y
 				|| ScanGridUnit > bounds.Max.Z - bounds.Min.Z)
