@@ -23,7 +23,7 @@ class COVERDEMO_API ACoverDemoGameModeBase : public AGameModeBase
 protected:
 	// This is only stored here to prevent the GC from destroying the cover system every now and then, nullifying the underlying octree.
 	UPROPERTY()
-	UCoverSystem* CoverSystem;
+	TObjectPtr<UCoverSystem> CoverSystem;
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	
