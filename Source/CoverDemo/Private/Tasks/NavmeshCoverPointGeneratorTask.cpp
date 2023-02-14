@@ -115,7 +115,7 @@ const FBox FNavmeshCoverPointGeneratorTask::GenerateCoverInBounds(TArray<FDTOCov
 
 	// get the navigation vertices from recast via a batch query
 	navdata->BeginBatchQuery();
-	navdata->GetDebugGeometry(navGeo, NavmeshTileIndex);
+	navdata->GetDebugGeometryForTile(navGeo, NavmeshTileIndex);
 	navdata->FinishBatchQuery();
 
 	// process the navmesh vertices (called nav mesh edges for some occult reason)

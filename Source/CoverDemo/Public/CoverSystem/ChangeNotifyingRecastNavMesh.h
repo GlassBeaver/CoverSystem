@@ -63,7 +63,7 @@ public:
 
 	// Called after a set of tiles had been updated. Due to how Recast's implementation works, it may repeatedly contain the same tiles between successive invocations.
 	// This is worked around by buffering tile updates (see delegates).
-	virtual void OnNavMeshTilesUpdated(const TArray<uint32>& ChangedTiles) override;
+	virtual void OnNavMeshTilesUpdated(const TArray<FNavTileRef>& ChangedTiles) override;
 
 	// Broadcasts buffered tile updates every TileBufferInterval seconds via NavmeshTilesUpdatedDelegate. Thread-safe.
 	UFUNCTION()

@@ -31,12 +31,13 @@ void AChangeNotifyingRecastNavMesh::EndPlay(const EEndPlayReason::Type EndPlayRe
 	Super::EndPlay(EndPlayReason);
 }
 
-void AChangeNotifyingRecastNavMesh::OnNavMeshTilesUpdated(const TArray<uint32>& ChangedTiles)
+void AChangeNotifyingRecastNavMesh::OnNavMeshTilesUpdated(const TArray<FNavTileRef>& ChangedTiles)
 {
 	Super::OnNavMeshTilesUpdated(ChangedTiles);
-
+	TArray<uint32> ChangedTilesIDs;
+	FNavTileRef::DeprecatedGetTileIdsFromNavTileRefs(GetRecastNavMeshImpl(), ChangedTiles, ChangedTilesIDs);
 	TSet<uint32> updatedTiles;
-	for (uint32 changedTile : ChangedTiles)
+	for (uint32 changedTile : ChangedTilesIDs)
 	{
 		updatedTiles.Add(changedTile);
 		UpdatedTilesIntervalBuffer.Add(changedTile);
